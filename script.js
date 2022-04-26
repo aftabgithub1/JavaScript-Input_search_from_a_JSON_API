@@ -33,3 +33,27 @@ search.addEventListener('input', e => {
         element.classList.toggle('hide', !isVisible)
     })
 })
+
+
+const copyApi = document.querySelector('.copy-api-input');
+const tooltip = document.querySelector('.tooltip');
+
+
+copyApi.addEventListener('click', () => {
+    copyApi.select();
+    copyApi.setSelectionRange(0, 99999); /* For mobile devices */
+     /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyApi.value);
+  
+    tooltip.style.visibility = "visible"
+    tooltip.style.opacity = "1"
+})
+
+copyApi.addEventListener('mouseleave', () => {
+    setTimeout(() => {
+        tooltip.style.visibility = "hidden"
+        tooltip.style.opacity = "0"
+        tooltip.style.transition = "opacity 400ms ease"
+        document.getSelection().removeAllRanges()
+    }, 2000)
+})
